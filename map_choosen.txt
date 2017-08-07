@@ -1,0 +1,9 @@
+map_choosen.txt
+
+The map position to be wrangled is a metro-extract from OSM site for the city of Buenos Aires, Argentina :
+https://mapzen.com/data/metro-extracts/metro/buenos-aires_argentina/
+
+The city of Buenos Aires is the city were i was born , i studied and grow.
+The city has the first underground system (subway) in latinamerica and the 13th in the world.
+The reasson I choose it is because i found , interacting with the map in OSM, that subway lines information and
+subway station names information could be improved.

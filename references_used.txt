@@ -1,0 +1,21 @@
+references_used.txt
+
+Underground history : https://en.wikipedia.org/wiki/Buenos_Aires_Underground
+Underground map     : http://www.buenosaires.gob.ar/subte/mapa-y-combinaciones
+OSM source data     : https://mapzen.com/data/metro-extracts/metro/buenos-aires_argentina/
+ET.iterparse		: https://docs.python.org/2/library/xml.etree.elementtree.html
+accented process    : https://stackoverflow.com/questions/15261793/ython-efficient-method-to-replace-accents-%C3%A9-to-e-remove-a-za-z-d-s-and
+unidecode doc       : https://pypi.python.org/pypi/Unidecode
+str.join			: https://docs.python.org/2/library/stdtypes.html#str.join
+re library			: https://docs.python.org/2/library/re.html
+char remove         : https://stackoverflow.com/questions/3939361/remove-specific-characters-from-a-string-in-python						list of dic         : https://stackoverflow.com/questions/11492656/create-list-of-dictionary-python
+ignore warnings     : https://stackoverflow.com/questions/14463277/how-to-disable-python-warnings
+sqlite3             : https://docs.python.org/2/library/sqlite3.html
+csv to sqlite3		: https://stackoverflow.com/questions/2887878/importing-a-csv-file-into-a-sqlite3-database-table-using-python
+odo                 : http://odo.pydata.org/en/latest/index.html
+truncate table      : https://www.techonthenet.com/sqlite/truncate.php		
+sqlite subqueries   : http://www.sqlitetutorial.net/sqlite-subquery/
+python triple quote : https://stackoverflow.com/questions/3877623/in-python-can-you-have-variables-within-triple-quotes-if-so-how																													
+
+python cookbook 
+
