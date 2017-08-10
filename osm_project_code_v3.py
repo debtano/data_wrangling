@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[186]:
+# In[1]:
 
 import xml.etree.cElementTree as ET
 from collections import defaultdict
@@ -14,21 +14,22 @@ import sqlite3
 from odo import discover, resource, odo
 
 
-# In[187]:
+# In[2]:
 
 # Reference to Data Auditing process (project_submission_doc.pdf)
 # 1) Provide a programmable reference to correct data
+## REF1
 import normalized_stations
 
 
-# In[188]:
+# In[3]:
 
 # Reference to Data Auditing process (project_submission_doc.pdf)
 # 2) Sample the OSM file and clean station names
 actual_stations = []
 decoded_stations = {}
 
-
+## REF2
 def parse_and_collect_nodes(osmfile):
     osm_file = open(osmfile, "r")
     doc = ET.iterparse(osm_file, events=("start","end"))
@@ -40,26 +41,28 @@ def parse_and_collect_nodes(osmfile):
                 continue
     except:
         print "End of file reached"
-
+## REF3
 def process_every_node(itero):
     k_tags = []
     v_tags = []
     for tag in itero:
         k_tags.append(tag.attrib['k']) 
         v_tags.append(tag.attrib['v'])
-    extract_stations(k_tags, v_tags)    
+    extract_stations(k_tags, v_tags)  
 
+## REF4
 def extract_stations(k_tags, v_tags):
     if "subway" in k_tags:
         actual_stations.append(v_tags[0])
 
+## REF5
 def to_ascii_actual_stations():
     for index, station in enumerate(actual_stations):
         # decoded_stations.append(unidecode(station))
         decoded_stations[index] = unidecode(station)
 
 
-# In[189]:
+# In[4]:
 
 # Reference to Data Auditing process (project_submission_doc.pdf)
 # 3) First pass stations and the rest and 4) Dealing with the “no match” stations names
@@ -68,11 +71,14 @@ nomatch_stations = {}
 dict_of_tokeners = {}
 final_review_nomatch = []
 
+## REF7
+
 tokens_to_ignore = [" de ", " los ", "-", " La ", " Los ", "los", "\(E\)", "\(C\)", "\(D\)"]
 ## split each station name in final_normalization in tokens ignoring the ones in tokens_to_ignore
 pattern = '|'.join(tokens_to_ignore)
 
 # first pass of the actual_stations collected from OSM through a compare with official stations
+## REF6
 def split_match_nomatch_stations():
     for key in decoded_stations.keys():
         if decoded_stations[key] in normalized_stations.all_stations():
@@ -99,7 +105,7 @@ def review_nomatch(tokener, key):
 
 
 
-# In[190]:
+# In[5]:
 
 OSMFILE = "bs_as_subway.osm"
 
@@ -109,21 +115,21 @@ OSMFILE = "bs_as_subway.osm"
 # Auditing process execution
 
 
-# In[191]:
+# In[6]:
 
 parse_and_collect_nodes(OSMFILE)
 # calls process_every_node()
 # --> calls extract_stations
 
 
-# In[194]:
+# In[7]:
 
 to_ascii_actual_stations()
 split_match_nomatch_stations()
 split_nomatch()
 
 
-# In[195]:
+# In[8]:
 
 for key in dict_of_tokeners.keys():
     review_nomatch(dict_of_tokeners[key], key)
@@ -183,6 +189,7 @@ for line in lines:
 # In[200]:
 
 # The csv files to export  to sqlite3
+## REF8
 
 NOMATCH_STATIONS_TOKENS_PATH = "nomatch_tokens.csv" # final_review_nomatch
 NOMATCH_STATIONS_PATH        = "nomatch.csv" # nomatch_stations_dict_list
@@ -260,6 +267,8 @@ csv_to_db(OFICIAL_STATIONS_PATH , 'official_stations')
 # In[207]:
 
 # SQL query to find out which no matching tokenized station name is the best candidate
+## REF9
+
 QUERY = '''
 select nomatch_tokens.nomatch_station as normalizar,
 count(nomatch_tokens.norm_station) as match,
